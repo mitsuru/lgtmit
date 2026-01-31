@@ -1,0 +1,22 @@
+{
+  "name": "lgtmit",
+  "version": "0.1.0",
+  "description": "Make curl | bash installations safe with AI-powered script review",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "lgtmit": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT"
+}

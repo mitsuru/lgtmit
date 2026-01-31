@@ -52,12 +52,9 @@ function main(): void {
   const { dryRun, command } = parsed;
 
   let script: string;
-  let tempFilePath: string;
 
   try {
-    const result = fetchScript(command);
-    script = result.script;
-    tempFilePath = result.tempFilePath;
+    script = fetchScript(command);
   } catch (err) {
     const message = err instanceof Error ? err.message : "Fetch failed";
     log(message);
@@ -71,7 +68,7 @@ function main(): void {
     return;
   }
 
-  const result = reviewScript(tempFilePath);
+  const result = reviewScript(script);
 
   if (result.safe) {
     log(`Review complete: safe`);

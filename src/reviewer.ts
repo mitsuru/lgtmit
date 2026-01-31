@@ -20,12 +20,15 @@ const PROMPT = `You are a security reviewer. Review the attached shell script an
 Respond in the following JSON format only:
 {"safe": boolean, "reason": "reason for judgment", "details": ["specific finding 1", ...]}`;
 
-export function reviewScript(tempFilePath: string): ReviewResult {
+export function reviewScript(script: string): ReviewResult {
   log("Reviewing with Claude Code...");
+
+  const fullPrompt = `${PROMPT}\n\n---\n\n${script}`;
 
   let stdout: string;
   try {
-    stdout = execSync(`claude -p ${JSON.stringify(PROMPT)} ${tempFilePath}`, {
+    stdout = execSync("claude -p", {
+      input: fullPrompt,
       encoding: "utf-8",
       stdio: ["pipe", "pipe", "pipe"],
       timeout: REVIEW_TIMEOUT,

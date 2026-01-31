@@ -43,6 +43,13 @@ The tool acts as a stdout filter: it intercepts the script, has an AI agent revi
 npx lgtmit -- curl https://example.com/install -fsS | bash
 ```
 
+### Dry-run mode (for AI agents)
+
+```bash
+# Fetch and output script without review (AI agent reviews it itself)
+npx lgtmit --dry-run -- curl https://example.com/install -fsS
+```
+
 ### Future modes
 
 ```bash
@@ -183,6 +190,35 @@ lgtmit/
 - **When in doubt, treat as unsafe** — fail-safe by default
 - **Always clean up temp files** — cleanup on process exit
 - **Never break the pipe** — lgtmit itself always exits 0; bash exit code is controlled by the warning script's `exit 1`
+
+## Dry-run Mode (for AI Agents)
+
+AI software engineers (e.g. Devin) may want to review scripts themselves rather than delegating to Claude Code. The `--dry-run` flag supports this use case.
+
+### Usage
+
+```bash
+# AI agent fetches the script via lgtmit
+npx lgtmit --dry-run -- curl https://cursor.com/install -fsS
+
+# Agent reads the output, reviews the script with its own judgment
+
+# If deemed safe, agent executes the original command directly
+curl https://cursor.com/install -fsS | bash
+```
+
+### Behavior
+
+- Executes the given command and captures the script content
+- Outputs the raw script to stdout (no review, no modification)
+- Review progress/metadata is output to stderr (script size, source URL, etc.)
+- No Claude Code CLI dependency required in this mode
+
+### Design Rationale
+
+- `lgtmit`'s responsibility in dry-run mode is limited to **safe script fetching**
+- Review criteria are the agent's responsibility — agents can define their own criteria in their prompts or system configuration
+- This keeps lgtmit focused and avoids hardcoding review criteria that may not suit every agent
 
 ## Future Considerations
 

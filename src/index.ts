@@ -2,7 +2,7 @@
 
 import { fetchScript } from "./fetcher.js";
 import { reviewScript } from "./reviewer.js";
-import { log, buildWarningScript, outputScript } from "./output.js";
+import { log, buildWarningScript, buildDryRunOutput, outputScript } from "./output.js";
 
 function printUsage(): void {
   log("Usage: lgtmit [--dry-run] -- <command...>");
@@ -64,7 +64,7 @@ function main(): void {
 
   if (dryRun) {
     log("Dry-run mode: outputting script without review");
-    outputScript(script);
+    outputScript(buildDryRunOutput(script, command));
     return;
   }
 

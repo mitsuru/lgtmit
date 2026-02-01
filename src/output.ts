@@ -21,6 +21,31 @@ export function outputScript(script: string): void {
   process.stdout.write(script);
 }
 
+export function buildDryRunOutput(script: string, command: string[]): string {
+  const cmdStr = command.join(" ");
+  return `${PREFIX} Dry-run mode: Script fetched but NOT reviewed.
+${PREFIX} Please review the following script for security issues before executing.
+
+Source command: ${cmdStr}
+
+Review criteria:
+- Malware, backdoors, data exfiltration
+- Unexpected overwriting of existing files
+- Suspicious changes to PATH or shell configuration
+- Unnecessary use of sudo
+- Unexpected network connections
+
+--- Script content ---
+${script}
+--- End of script ---
+
+If the script is safe, run the original command:
+  ${cmdStr} | bash
+
+If unsafe, do NOT execute.
+`;
+}
+
 function escapeShell(s: string): string {
   return s.replace(/["\\$`!]/g, "\\$&");
 }

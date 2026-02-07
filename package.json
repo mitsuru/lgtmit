@@ -1,6 +1,6 @@
 {
   "name": "lgtmit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Make curl | bash installations safe with AI-powered script review",
   "type": "module",
   "main": "./dist/index.js",

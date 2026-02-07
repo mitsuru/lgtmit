@@ -7,7 +7,7 @@ Make `curl | bash` installations safe with AI-powered script review.
 `lgtmit` is a CLI stdout filter that sits between `curl` and `bash`, using Claude to review installation scripts before execution.
 
 ```bash
-npx lgtmit -- curl https://example.com/install -fsS | bash
+npx -y lgtmit -- curl https://example.com/install -fsS | bash
 ```
 
 **Without lgtmit:** You blindly pipe remote scripts into your shell.
@@ -36,10 +36,10 @@ Requires [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`claude`
 
 ```bash
 # Review and execute an install script
-npx lgtmit -- curl https://example.com/install -fsS | bash
+npx -y lgtmit -- curl https://example.com/install -fsS | bash
 
 # Dry-run: fetch and display the script without review
-npx lgtmit --dry-run -- curl https://example.com/install -fsS
+npx -y lgtmit --dry-run -- curl https://example.com/install -fsS
 ```
 
 ### Options

@@ -30,7 +30,7 @@ All logs go to stderr. Only the script (or warning) goes to stdout. This keeps t
 npm install -g lgtmit
 ```
 
-Requires [Claude CLI](https://docs.anthropic.com/en/docs/claude-cli) (`claude`) to be installed and authenticated.
+Requires [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`claude`) to be installed and authenticated.
 
 ## Usage
 
@@ -52,7 +52,7 @@ npx lgtmit --dry-run -- curl https://example.com/install -fsS
 ## Requirements
 
 - Node.js 18+
-- [Claude CLI](https://docs.anthropic.com/en/docs/claude-cli) installed and authenticated
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed and authenticated
 
 ## Design principles
 

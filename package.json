@@ -11,7 +11,30 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "security",
+    "curl",
+    "bash",
+    "script-review",
+    "ai",
+    "claude",
+    "cli",
+    "install-safety"
+  ],
+  "author": "Mitsuru Hayasaka",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mitsuru/lgtmit.git"
+  },
+  "homepage": "https://github.com/mitsuru/lgtmit",
+  "bugs": {
+    "url": "https://github.com/mitsuru/lgtmit/issues"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
